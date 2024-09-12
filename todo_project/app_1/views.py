@@ -30,13 +30,12 @@ def add_task(request):
 def edit_task(request, task_id):
     task = Task.objects.get(id=task_id)
     form = TaskForm(instance=task)
-    print(task)
     if request.method == "POST":
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             return redirect("task_list")
-    context = {"form": form}
+    context = {"form": form, "task": task}
     return render(request, "edit_task.html", context)
 
 
