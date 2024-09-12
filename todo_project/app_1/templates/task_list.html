@@ -13,8 +13,13 @@
             <ul class="list-group mt-3">
                 {% for task in tasks %}
                     <li class="list-group-item">
-                        {{ task.title }} <a href="{% url 'delete_task' task.id %}"
-    class="btn btn-danger btn-sm float-right">Delete</a>
+                        {{ task.title }}
+                        <span>
+                            <a href="{% url 'delete_task' task.id %}"
+                               class="btn btn-danger btn-sm float-right">Delete</a>
+                            <a href="{% url 'edit_task' task.id %}"
+                               class="btn btn-warning btn-sm float-right">Edit</a>
+                        </span>
                     </li>
                 {% endfor %}
             </ul>
