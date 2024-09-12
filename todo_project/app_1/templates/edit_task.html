@@ -14,7 +14,6 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="title">Görev:</label>
                         <input type="text"
                                id="title"
                                name="title"
@@ -24,7 +23,7 @@
                     </div>
                     <!-- Button group aligned horizontally -->
                     <div class="d-flex">
-                        <button type="submit" class="btn btn-success mr-2">Onay</button>
+                        <button type="submit" class="btn btn-success mr-2">Kaydet</button>
                         <a href="{% url 'task_list' %}" class="btn btn-danger">İptal</a>
                     </div>
                 </form>
