@@ -35,7 +35,6 @@ def edit_task(request, task_id):
 
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id)
-    print(task)
 
     if request.method == "POST":
         task.delete()
