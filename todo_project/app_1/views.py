@@ -6,14 +6,8 @@ from .forms import TaskForm
 # Create your views here.
 def task_list(request):
     tasks = Task.objects.all()
-    context = {"tasks": tasks}
-    return render(request, "task_list.html", context)
-
-
-def task(request, task_id):
-    taskObj = Task.objects.get(id=task_id)
-    context = {"task": taskObj}
-    return render(request, "task.html", context)
+    context = {"tasks": tasks, "name": "İşler Güçler"}
+    return render(request, "app_1/task_list.html", context)
 
 
 def add_task(request):
@@ -23,8 +17,8 @@ def add_task(request):
         if form.is_valid():
             form.save()
             return redirect("task_list")
-    context = {"form": form}
-    return render(request, "add_task.html", context)
+    context = {"form": form, "name": "Görev Ekle"}
+    return render(request, "app_1/add_task.html", context)
 
 
 def edit_task(request, task_id):
@@ -35,8 +29,8 @@ def edit_task(request, task_id):
         if form.is_valid():
             form.save()
             return redirect("task_list")
-    context = {"form": form, "task": task}
-    return render(request, "edit_task.html", context)
+    context = {"form": form, "task": task, "name": "Düzenle"}
+    return render(request, "app_1/edit_task.html", context)
 
 
 def delete_task(request, task_id):
@@ -47,5 +41,5 @@ def delete_task(request, task_id):
         task.delete()
         return redirect("task_list")
 
-    context = {"task": task}
-    return render(request, "delete_task.html", context)  # redirect("delete_task")
+    context = {"task": task, "name": "Sil"}
+    return render(request, "app_1/delete_task.html", context)
