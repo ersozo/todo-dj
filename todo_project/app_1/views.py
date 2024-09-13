@@ -6,7 +6,7 @@ from .forms import TaskForm
 # Create your views here.
 def task_list(request):
     tasks = Task.objects.all()
-    context = {"tasks": tasks, "name": "İşler Güçler"}
+    context = {"tasks": tasks, "name": "İşler"}
     return render(request, "app_1/task_list.html", context)
 
 
