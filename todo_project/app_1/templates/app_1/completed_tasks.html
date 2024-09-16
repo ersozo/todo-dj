@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-
-        <div class="container">
+    <div class="container">
         <h1 class="mt-4">{{ name }}</h1>
+        <hr>
         <ul class="list-group mt-3">
             {% for task in completed_tasks %}
                 <li class="list-group-item">
@@ -12,16 +12,13 @@
                     <small>Tarih: {{ task.completed_at }}</small>
                     <br>
                     <small>Termin: {{ task.due_date }}</small>
-                    <br>
-                        <div class="float-right">
+                    <div class="d-flex justify-content-end">
                         <a href="{% url 'delete_completed_task' task.id %}"
                            class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash-alt"></i></a>
                     </div>
-
                 </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'task_list' %}" class="btn btn-primary mt-3">İşler</i></a>
+        <a href="{% url 'task_list' %}" class="btn btn-primary mt-3">Devam eden işler</a>
     </div>
-
 {% endblock content %}

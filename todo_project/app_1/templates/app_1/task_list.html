@@ -1,35 +1,40 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-    <div class="container">
-      <h1 class="mt-4">{{ name }}</h1>
-      {% if tasks %}
-      
+  <div class="container">
+    <h1 class="mt-4">{{ name }}</h1>
+    <hr>
+    <div class="d-flex ">
+      <a href="{% url 'add_task' %}" class="btn btn-primary btn-lg me-3"><i class="fas fa-plus"></i></a>
+      <a href="{% url 'completed_tasks' %}" class="btn btn-success btn-lg"><i class="fas fa-list"></i></a>
+    </div>
+    {% if tasks %}
       <ul class="list-group mt-3">
         {% for task in tasks %}
-        <li class="list-group-item">
-          <strong>{{ task.title }}</strong><br />
-          {{ task.description }}
-          <br>
-          <br />
-          <small>Tarih: {{ task.created_at }}</small>
-          <br>
-          <small>Termin: {{ task.due_date }}</small>
-          <br />
-          <div class="float-right">
-                        <a href="{% url 'complete_task' task.id %}" class="btn btn-success btn-sm"><i class="fas fa-check"></i></a>
-                        <a href="{% url 'completed_tasks' %}" class="btn btn-success btn-sm ml-2"><i class="fas fa-list"></i></a>
-                        <a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit"></i></a>
-                        <a href="{% url 'delete_task' task.id %}"
-                           class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash-alt"></i></a>
-                    </div>
-        </li>
+          <li class="list-group-item">
+            <strong>{{ task.title }}</strong>
+            <br />
+            <small>Açıklama: {{ task.description }}</small>
+            <br>
+            <br />
+            <small>Tarih: {{ task.created_at }}</small>
+            <br>
+            <small>Termin: {{ task.due_date }}</small>
+            <br />
+            <div class="d-flex justify-content-end mt-3">
+              <a href="{% url 'complete_task' task.id %}"
+                 class="btn btn-success btn-sm me-2"><i class="fas fa-check"></i></a>
+              <a href="{% url 'completed_tasks' %}"
+                 class="btn btn-success btn-sm me-2"><i class="fas fa-list"></i></a>
+              <a href="{% url 'edit_task' task.id %}"
+                 class="btn btn-warning btn-sm me-2"><i class="fas fa-edit"></i></a>
+              <a href="{% url 'delete_task' task.id %}"
+                 class="btn btn-danger btn-sm me-2"> <i class="fas fa-trash-alt"></i></a>
+            </div>
+          </li>
         {% endfor %}
       </ul>
-      {% else %}
+    {% else %}
       <p>No active tasks available.</p>
-      {% endif %}
-      <a href="{% url 'add_task' %}" class="btn btn-primary mt-3"
-        ><i class="fas fa-plus"></i
-      ></a>
-    </div>
+    {% endif %}
+  </div>
 {% endblock content %}

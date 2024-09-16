@@ -1,14 +1,15 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-        <div class="container">
-            <h1 class="mt-4">Görev silinsin mi?</h1>
-            <div class="d-flex mt-3">
-                <form method="post" class="mt-3" action="{% url 'delete_completed_task' task.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success mr-2">Onay</button>
-                    <!-- Cancel button as a link -->
-                    <a href="{% url 'task_list' %}" class="btn btn-danger">İptal</a>
-                </form>
-            </div>
+    <div class="container">
+        <h1 class="mt-4">Listeden kaldırılsın mı?</h1>
+        <div class="d-flex mt-3">
+            <form method="post"
+                  class="mt-3"
+                  action="{% url 'delete_completed_task' task.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success mr-2">Evet</button>
+                <a href="{% url 'completed_tasks' %}" class="btn btn-danger">Hayır</a>
+            </form>
         </div>
+    </div>
 {% endblock content %}

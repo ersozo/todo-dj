@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Task, CompletedTask
 from .forms import TaskForm
-from django.utils import timezone
 
 
 # Create your views here.
@@ -20,7 +19,7 @@ def add_task(request):
             return redirect("task_list")
         else:
             form = TaskForm()
-    context = {"form": form, "name": "Görev Ekle"}
+    context = {"form": form, "name": "İş ekle"}
     return render(request, "app_1/add_task.html", context)
 
 
@@ -58,7 +57,7 @@ def complete_task(request, task_id):
 
 def completed_tasks(request):
     completed_tasks = CompletedTask.objects.all().order_by("-completed_at")
-    context = {"completed_tasks": completed_tasks, "name": "Tamamlananlar"}
+    context = {"completed_tasks": completed_tasks, "name": "Tamamlanan işler"}
     return render(request, "app_1/completed_tasks.html", context)
 
 
