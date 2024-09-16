@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-        <div class="container">
-            <h1 class="mt-4">{{name}}</h1>
-            <ul class="list-group mt-3">
-                {% for task in tasks %}
-                    <li class="list-group-item">
-                        {{ task.title }}
-                        <div class="float-right">
-                            <a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                            <a href="{% url 'delete_task' task.id %}"
-                               class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash-alt"></i></a>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'add_task' %}" class="btn btn-primary mt-3"><i class="fas fa-plus"></i></a>
-        </div>
+    <div class="container">
+      <h1 class="mt-4">{{ name }}</h1>
+      {% if tasks %}
+      
+      <ul class="list-group mt-3">
+        {% for task in tasks %}
+        <li class="list-group-item">
+          <strong>{{ task.title }}</strong><br />
+          {{ task.description }}<br />
+          <small>Due on: {{ task.due_date }}</small>
+          <br />
+          <div class="float-right">
+                        <a href="{% url 'complete_task' task.id %}" class="btn btn-success btn-sm"><i class="fas fa-check"></i></a>
+                        <a href="{% url 'completed_tasks' %}" class="btn btn-success btn-sm ml-2"><i class="fas fa-list"></i></a>
+                        <a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'delete_task' task.id %}"
+                           class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash-alt"></i></a>
+                    </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>No active tasks available.</p>
+      {% endif %}
+      <a href="{% url 'add_task' %}" class="btn btn-primary mt-3"
+        ><i class="fas fa-plus"></i
+      ></a>
+    </div>
 {% endblock content %}

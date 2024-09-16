@@ -1,13 +1,14 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Task
 
 
-class TaskForm(ModelForm):
+class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["title"]
-
-    def __init__(self, *args, **kwargs):
-        super(TaskForm, self).__init__(*args, **kwargs)
-        for name, field in self.fields.items():
-            field.widget.attrs.update({"class": "form-control"})
+        fields = ["title", "description", "due_date"]
+        widgets = {
+            "due_date": forms.DateTimeInput(attrs={"type": "datetime-local"}),
+        }
+        labels = {
+            "due_date": "Due Date (Optional)",
+        }
