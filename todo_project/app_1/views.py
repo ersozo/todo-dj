@@ -64,5 +64,10 @@ def completed_tasks(request):
 
 def delete_completed_task(request, completed_task_id):
     completed_task = CompletedTask.objects.get(id=completed_task_id)
-    completed_task.delete()
-    return redirect("completed_tasks")
+    if request.method == "POST":
+        completed_task.delete()
+        print("deleted")
+        return redirect("completed_tasks")
+
+    context = {"task": completed_task, "name": "Sil"}
+    return render(request, "app_1/delete_completed_task.html", context)

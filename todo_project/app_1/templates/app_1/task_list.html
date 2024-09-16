@@ -8,8 +8,12 @@
         {% for task in tasks %}
         <li class="list-group-item">
           <strong>{{ task.title }}</strong><br />
-          {{ task.description }}<br />
-          <small>Due on: {{ task.due_date }}</small>
+          {{ task.description }}
+          <br>
+          <br />
+          <small>Tarih: {{ task.created_at }}</small>
+          <br>
+          <small>Termin: {{ task.due_date }}</small>
           <br />
           <div class="float-right">
                         <a href="{% url 'complete_task' task.id %}" class="btn btn-success btn-sm"><i class="fas fa-check"></i></a>

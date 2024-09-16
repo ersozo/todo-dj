@@ -8,6 +8,11 @@
                 <li class="list-group-item">
                     {{ task.title }}
                     <br>
+                    <br>
+                    <small>Tarih: {{ task.completed_at }}</small>
+                    <br>
+                    <small>Termin: {{ task.due_date }}</small>
+                    <br>
                         <div class="float-right">
                         <a href="{% url 'delete_completed_task' task.id %}"
                            class="btn btn-danger btn-sm ml-2"> <i class="fas fa-trash-alt"></i></a>
